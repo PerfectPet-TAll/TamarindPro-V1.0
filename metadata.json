@@ -1,0 +1,8 @@
+{
+  "name": "Tamarind Product Sales & Export Management",
+  "description": "ระบบบริหารจัดการงานขายและส่งออกสินค้าอัจฉริยะ ขับเคลื่อนยอดขายสู่ตลาดโลกด้วยข้อมูลเชิงลึกและระบบอัตโนมัติ สำหรับผลิตภัณฑ์มะขามแปรรูปแบบครบวงจร",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

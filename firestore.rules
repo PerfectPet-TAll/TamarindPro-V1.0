@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Safety Net catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Notifications security rules
+    match /notifications/{notificationId} {
+      allow read: if request.auth != null;
+      
+      allow create: if request.auth != null
+        && request.resource.data.title != null
+        && request.resource.data.title.size() <= 200
+        && request.resource.data.description != null
+        && request.resource.data.description.size() <= 1000
+        && (request.resource.data.severity == 'success' || request.resource.data.severity == 'warning' || request.resource.data.severity == 'info' || request.resource.data.severity == 'critical')
+        && (request.resource.data.category == 'sales' || request.resource.data.category == 'oem' || request.resource.data.category == 'logistics' || request.resource.data.category == 'system' || request.resource.data.category == 'sheets' || request.resource.data.category == 'calendar')
+        && (request.resource.data.isRead == true || request.resource.data.isRead == false)
+        && request.resource.data.createdAt == request.time;
+        
+      allow update: if request.auth != null
+        && (request.resource.data.isRead == true || request.resource.data.isRead == false)
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.title == resource.data.title
+        && request.resource.data.description == resource.data.description
+        && request.resource.data.severity == resource.data.severity
+        && request.resource.data.category == resource.data.category;
+        
+      allow delete: if request.auth != null;
+    }
+  }
+}

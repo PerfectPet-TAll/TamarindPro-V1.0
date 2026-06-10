@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "Notification": {
+      "title": "Notification",
+      "description": "System and business event notifications",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the notification"
+        },
+        "title": {
+          "type": "string",
+          "description": "Brief summary of the event"
+        },
+        "description": {
+          "type": "string",
+          "description": "Full contextual details of the notification"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["success", "warning", "info", "critical"],
+          "description": "Color-coded notification urgency level"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["sales", "oem", "logistics", "system", "sheets", "calendar"],
+          "description": "Operations category"
+        },
+        "isRead": {
+          "type": "boolean",
+          "description": "Read status toggle"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server time of event occurrence"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Targeted recipient ID or general system identifier"
+        }
+      },
+      "required": ["title", "description", "severity", "category", "isRead", "createdAt"]
+    }
+  },
+  "firestore": {
+    "notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "Global operational and database sync alert logs"
+    }
+  }
+}
