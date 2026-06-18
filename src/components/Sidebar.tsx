@@ -13,12 +13,14 @@ import {
   Boxes,
   RotateCcw,
   Settings,
-  ChevronRight as ChevronRightIcon
+  ChevronRight as ChevronRightIcon,
+  Bean
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { useAuth } from '../context/AuthContext';
 import { MENU_ITEMS } from '../config/menu';
+import { TamarindLogo } from './shared/TamarindLogo';
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -57,17 +59,15 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
       {/* Logo Area */}
       <div className="flex h-24 items-center justify-center border-b border-white/5 bg-[#0a0f1d]">
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-slate-800 text-white shadow-lg border border-white/10">
-            <Warehouse size={24} strokeWidth={2.5} />
-          </div>
+          <TamarindLogo className="h-12 w-12 p-1.5" />
           {!isCollapsed && (
             <div className="flex flex-col">
-              <div className="flex items-center gap-1.5 text-xl font-black tracking-widest">
-                <span className="text-white">WMS</span>
-                <span className="text-accent underline decoration-2 underline-offset-4">MASTER</span>
+              <div className="flex items-center gap-1.5 text-[15px] font-black tracking-wider">
+                <span className="text-white uppercase drop-shadow-md">INTELLIGENCE</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f47729] to-[#ab8a3b] uppercase">SALE & EXPORT</span>
               </div>
-              <span className="text-[9px] font-black text-slate-500 tracking-[0.2em] uppercase mt-1">
-                Warehouse Core
+              <span className="text-[9px] font-black text-[#8c7361] tracking-[0.1em] uppercase mt-1">
+                Smart Sales & Export Management System
               </span>
             </div>
           )}
@@ -96,7 +96,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
 
         {/* Modules Section */}
         <div>
-          {['Sales Operations', 'WMS Modules', 'System configuration'].map((catName) => {
+          {['Sales Operations', 'Export Logistics', 'System configuration'].map((catName) => {
             const categoryItems = MENU_ITEMS.filter(item => item.category === catName);
             if (categoryItems.length === 0) return null;
 

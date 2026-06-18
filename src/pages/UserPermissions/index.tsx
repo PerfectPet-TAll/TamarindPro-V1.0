@@ -3,6 +3,8 @@ import { createPortal } from 'react-dom';
 import * as Icons from 'lucide-react';
 import { DraggableModal } from '../../components/shared/DraggableModal';
 
+import UserGuideButton from '../../components/shared/UserGuideButton';
+
 // --- Theme Configuration (Synced with Home Palette) ---
 const THEME = {
   bgGradient: 'linear-gradient(135deg, #d8cfd6 50%, #f6f8ec 100%)',
@@ -501,14 +503,11 @@ export default function UserPermission() {
   };
 
   return (
-    <div className="flex flex-1 w-full font-sans flex-col pb-0 animate-fadeIn bg-transparent">
+    <div className="flex flex-1 w-full font-sans flex-col pt-4 pb-0 animate-fadeIn bg-transparent">
       <style dangerouslySetInnerHTML={{__html: globalStyles}} />
       
       {/* USER GUIDE FLOATING TAB */}
-      <button onClick={() => setIsGuideOpen(true)} className="fixed right-0 top-[80px] bg-[#f8f9fa] border border-[#e2d1c3] border-r-0 text-[#2e3118] py-8 px-1.5 rounded-l-xl shadow-md hover:bg-[#D2042D] hover:text-white hover:border-[#D2042D] transition-all duration-500 z-[100] flex flex-col items-center gap-4 group">
-          <Icons.HelpCircle size={18} className="shrink-0 group-hover:rotate-12 transition-transform text-[#8c7361] group-hover:text-white" />
-          <span className="font-black tracking-[0.3em] [writing-mode:vertical-rl] rotate-180 whitespace-nowrap uppercase text-[11px]">USER GUIDE</span>
-      </button>
+      <UserGuideButton onClick={() => setIsGuideOpen(true)} />
 
       <UserGuidePanel 
           isOpen={isGuideOpen} 
@@ -542,7 +541,7 @@ export default function UserPermission() {
       <EditUserModal isOpen={editModal.isOpen} onClose={() => setEditModal({isOpen: false, user: null})} user={editModal.user} onSave={saveUserPermissions} />
 
       {/* HEADER SECTION */}
-      <div className="h-14 w-full px-4 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 z-20 shrink-0 mt-4">
+      <div className="h-14 w-full px-4 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 z-20 shrink-0">
           <div className="flex items-center gap-5">
               <div className="relative flex items-center justify-center group cursor-default shrink-0">
                   <div className="absolute inset-0 bg-[#f47729] blur-[15px] opacity-20 rounded-full group-hover:opacity-60 transition-all duration-700"></div>
@@ -572,8 +571,8 @@ export default function UserPermission() {
           </div>
       </div>
 
-      <div className="w-full px-4 sm:px-8 mb-8 mt-4">
-        <div className="w-full mt-4">
+      <div className="w-full px-4 sm:px-8 pb-8 mt-8">
+        <div className="w-full">
             
             {/* KPI STATS */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-3 shrink-0">

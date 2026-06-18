@@ -138,7 +138,7 @@
   /* ----- 2. LAYOUTS & CONTAINERS (เลย์เอาต์และระยะห่าง) ----- */
   
   /* กรอบของหน้าเพจโดยรวม - ขยายเต็มพื้นที่ (Full Responsive 100%), ปรับระยะห่าง GapHeader: pt-2 */
-  .sys-page-layout { @apply w-full mx-auto px-4 md:px-8 pt-2 space-y-4; }
+  .sys-page-layout { @apply w-full px-4 sm:px-8 pt-2 space-y-4; }
   
   /* เนื้อหาหลักด้านล่าง Header */
   .sys-main-content { @apply pt-2 space-y-3 md:space-y-4; }

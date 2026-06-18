@@ -450,7 +450,7 @@ export default function SystemConfig() {
                             </div>
                             <div className="flex-1 text-left overflow-hidden">
                                 <p className={`text-[13px] font-black uppercase tracking-tight truncate ${activeTab === tab.id ? 'text-[#F0EAE1]' : 'text-[#2e3118]'}`}>{tab.label}</p>
-                                <p className={`text-[11px] font-bold uppercase tracking-widest mt-0.5 truncate ${activeTab === tab.id ? 'text-[#af7a2b]' : 'text-[#8c7361]'}`}>{data[tab.id].length} Items</p>
+                                <p className={`text-[11px] font-bold uppercase tracking-widest mt-0.5 truncate ${activeTab === tab.id ? 'text-[#af7a2b]' : 'text-[#8c7361]'}`}>{data[tab.id] ? data[tab.id].length : 0} Items</p>
                             </div>
                             {activeTab === tab.id && <div className="absolute right-3 w-1.5 h-1.5 rounded-full bg-[#af7a2b] shadow-[0_0_8px_#af7a2b]"></div>}
                         </button>
@@ -459,6 +459,7 @@ export default function SystemConfig() {
 
                 {/* CONTENT LIST */}
                 <div className="lg:col-span-9 bg-white rounded-3xl shadow-lg border border-[#adb2b0] overflow-hidden flex flex-col animate-fadeIn">
+                    
                     <div className="px-8 py-5 border-b border-[#adb2b0] bg-[#f8f9fa] flex flex-col md:flex-row justify-between items-center gap-4">
                         <div>
                             <h4 className="text-[18px] font-black uppercase text-[#2e3118] tracking-tight flex items-center gap-3">

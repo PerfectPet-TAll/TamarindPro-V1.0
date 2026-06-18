@@ -42,7 +42,7 @@ export default function AICopilotPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      text: "สวัสดีครับ! ยินดีต้อนรับสู่ศูนย์บริการ **TamarindPro AI Copilot** แบบเต็มจออัจฉริยะ\n\nผมพร้อมให้คำแนะนำในคู่มือการใช้งานระบบ, การวิเคราะห์ข้อมูลการขาย, WMS (คลังสินค้า), กิจกรรมการดูแลลูกค้า และเอกสารตรวจสอบการส่งออกของผลิตภัณฑ์มะขามและผลไม้แปรรูป TamarindPro ทั่วโลกครับ\n\n💡 **ความสามารถพิเศษ:** ฉันขับเคลื่อนด้วยระบบวิจัยข้อมูลแบบเรียลไทม์ **Google Search Grounding** สามารถถามราคามะขามสากล ข่าวนำเข้าส่งออก หรือเงื่อนไขศุลกากรปัจจุบันได้ทันทีครับ!",
+      text: "สวัสดีครับ! ยินดีต้อนรับสู่ศูนย์บริการ **TamarindPro AI Copilot** แบบเต็มจออัจฉริยะ\n\nผมพร้อมให้คำแนะนำในคู่มือการใช้งานระบบ, การวิเคราะห์ข้อมูลการขาย, การจัดการส่งออก (Export Logistics), กิจกรรมการดูแลลูกค้า และเอกสารตรวจสอบการส่งออกของผลิตภัณฑ์มะขามและผลไม้แปรรูป TamarindPro ทั่วโลกครับ\n\n💡 **ความสามารถพิเศษ:** ฉันขับเคลื่อนด้วยระบบวิจัยข้อมูลแบบเรียลไทม์ **Google Search Grounding** สามารถถามราคามะขามสากล ข่าวนำเข้าส่งออก หรือเงื่อนไขศุลกากรปัจจุบันได้ทันทีครับ!",
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     },
   ]);
@@ -129,7 +129,7 @@ export default function AICopilotPage() {
         setMessages([
           {
             role: 'assistant',
-            text: "สวัสดีครับ! ยินดีต้อนรับสู่ศูนย์บริการ **TamarindPro AI Copilot** แบบเต็มจออัจฉริยะ\n\nผมพร้อมให้คำแนะนำในคู่มือการใช้งานระบบ, การวิเคราะห์ข้อมูลการขาย, WMS (คลังสินค้า), กิจกรรมการดูแลลูกค้า และเอกสารตรวจสอบการส่งออกของผลิตภัณฑ์มะขามและผลไม้แปรรูป TamarindPro ทั่วโลกครับ\n\n💡 **ความสามารถพิเศษ:** ฉันขับเคลื่อนด้วยระบบวิจัยข้อมูลแบบเรียลไทม์ **Google Search Grounding** สามารถถามราคามะขามสากล ข่าวนำเข้าส่งออก หรือเงื่อนไขศุลกากรปัจจุบันได้ทันทีครับ!",
+            text: "สวัสดีครับ! ยินดีต้อนรับสู่ศูนย์บริการ **TamarindPro AI Copilot** แบบเต็มจออัจฉริยะ\n\nผมพร้อมให้คำแนะนำในคู่มือการใช้งานระบบ, การวิเคราะห์ข้อมูลการขาย, การจัดการส่งออก (Export Logistics), กิจกรรมการดูแลลูกค้า และเอกสารตรวจสอบการส่งออกของผลิตภัณฑ์มะขามและผลไม้แปรรูป TamarindPro ทั่วโลกครับ\n\n💡 **ความสามารถพิเศษ:** ฉันขับเคลื่อนด้วยระบบวิจัยข้อมูลแบบเรียลไทม์ **Google Search Grounding** สามารถถามราคามะขามสากล ข่าวนำเข้าส่งออก หรือเงื่อนไขศุลกากรปัจจุบันได้ทันทีครับ!",
             timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
           },
         ]);
@@ -170,7 +170,7 @@ export default function AICopilotPage() {
                   iconColor: "#af7a2b",
                   description: "โต้ตอบคำสั่งและสรุปงานสำคัญด้วยแชตอัจฉริยะแบบไร้รอยต่อ:",
                   bullets: [
-                      { icon: "Send", iconColor: "#606934", title: "Operator Chat", text: "พิมพ์คุยกับ Copilot หรือคัดลอกไฟล์/แผ่นข้อมูลมาวางวิเคราะห์การจัดวางคลังสินค้า WMS ได้เรียลไทม์" },
+                      { icon: "Send", iconColor: "#606934", title: "Operator Chat", text: "พิมพ์คุยกับ Copilot หรือคัดลอกไฟล์/แผ่นข้อมูลมาวางวิเคราะห์การจัดการส่งออกได้เรียลไทม์" },
                       { icon: "Lightbulb", iconColor: "#ffa64a", title: "Quick Suggestions", text: "สามารถกดใช้แถบ Prompt สำเร็จรูปจากหน้าจอล่างสุด เพื่อประหยัดเวลาพิมพ์เมื่อต้องทำธุรกรรมสถิติ" }
                   ]
               }
@@ -229,7 +229,7 @@ export default function AICopilotPage() {
                 <div className="p-3.5 bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl border border-orange-100/50">
                   <div className="flex items-center gap-2 text-orange-850">
                     <Sparkles size={15} className="text-orange-600" />
-                    <span className="text-[10px] font-black uppercase tracking-wider">WMS Operations</span>
+                    <span className="text-[10px] font-black uppercase tracking-wider">Export Operations</span>
                   </div>
                   <p className="text-[11px] text-slate-600 mt-1 font-medium">
                     Capable of analyzing warehousing logic, stock layouts, categories, and inventory configurations.

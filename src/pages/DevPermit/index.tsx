@@ -78,7 +78,8 @@ const SYSTEM_MODULES = [
       { id: 'performa_invoice', label: 'Proforma Invoice (PI)' },
       { id: 'quotations', label: 'Quotations & Proposals' },
       { id: 'contracts', label: 'Contracts Management' },
-      { id: 'invoicing', label: 'Invoicing & Billing' }
+      { id: 'invoicing', label: 'Invoicing & Billing' },
+      { id: 'promotion_allocation', label: 'Promotion Allocation' }
     ]
   },
   {
@@ -123,7 +124,14 @@ const SYSTEM_MODULES = [
   },
   { 
     id: 'settings', label: 'SETTINGS', icon: Settings2,
-    subItems: [{ id: 'user_permission', label: 'User Permission' }, { id: 'dev_permit', label: 'Dev Permit (BETA)' }, { id: 'dev_logs', label: 'System Logs' }, { id: 'system_config', label: 'System Config' }]
+    subItems: [
+        { id: 'user_permission', label: 'User Permission' }, 
+        { id: 'dev_permit', label: 'Dev Permit (BETA)' }, 
+        { id: 'dev_logs', label: 'System Logs' }, 
+        { id: 'system_config', label: 'System Config' },
+        { id: 'google_sheets_sync', label: 'Google Sheets Sync' },
+        { id: 'auto_sync', label: 'Background Auto-Sync' }
+    ]
   }
 ];
 

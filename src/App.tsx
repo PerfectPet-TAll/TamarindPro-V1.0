@@ -19,6 +19,7 @@ import Home from './pages/Home';
 import PlaceholderPage from './pages/PlaceholderPage';
 import UserPermissions from './pages/UserPermissions';
 import AccessLogs from './pages/AccessLogs';
+import BackgroundAutoSync from './pages/BackgroundAutoSync';
 
 import ProductsCatalogue from './pages/ProductsCatalogue';
 import CustomerDirectory from './pages/CustomerDirectory';
@@ -155,7 +156,7 @@ export default function App() {
               {/* Confidential Modules */}
               <Route path="/settings" element={
                 <ProtectedRoute isConfidential>
-                  <PlaceholderPage title="WMS Settings" />
+                  <PlaceholderPage title="System Settings" />
                 </ProtectedRoute>
               } />
               <Route path="/permissions" element={
@@ -168,7 +169,12 @@ export default function App() {
                   <AccessLogs />
                 </ProtectedRoute>
               } />
-              
+              <Route path="/auto-sync" element={
+                <ProtectedRoute isConfidential>
+                  <BackgroundAutoSync />
+                </ProtectedRoute>
+              } />
+
               {/* Catch all */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Route>

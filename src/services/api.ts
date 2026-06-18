@@ -1,7 +1,21 @@
 /// <reference types="vite/client" />
 import { ApiResponse } from '../types';
 
-const SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL || '';
+const ENV_URL = import.meta.env.VITE_APPS_SCRIPT_URL || '';
+let SCRIPT_URL = localStorage.getItem('wms_apps_script_url') || ENV_URL;
+
+export const setAppsScriptUrl = (url: string) => {
+  SCRIPT_URL = url;
+  if (url) {
+    localStorage.setItem('wms_apps_script_url', url);
+  } else {
+    localStorage.removeItem('wms_apps_script_url');
+  }
+};
+
+export const getAppsScriptUrl = () => {
+  return SCRIPT_URL;
+};
 
 // Output setup status for easy debugging
 console.log('App initialization - GAS Backend URL configured:', !!SCRIPT_URL);

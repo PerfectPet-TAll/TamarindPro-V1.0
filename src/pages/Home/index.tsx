@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import Swal from 'sweetalert2';
 import { 
   LayoutDashboard, 
   Users, 
@@ -77,8 +78,10 @@ import CreditLimitManagement from '../CreditLimitManagement';
 import ShippingStatusLookup from '../ShippingStatusLookup';
 import DispatchContainer from '../DispatchContainer';
 import GoogleSheetsSync from '../GoogleSheetsSync';
+import BackgroundAutoSync from '../BackgroundAutoSync';
 import AICopilot from '../AICopilot';
 import NotificationCenter from '../NotificationCenter';
+import PromotionAllocation from '../PromotionAllocation';
 import { useVisibility } from '../../context/ModuleVisibilityContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { UpcomingPICarousel } from '../../components/UpcomingPICarousel';
@@ -139,7 +142,8 @@ const SYSTEM_MODULES = [
       { id: 'products_catalogue', label: 'Products Catalogue' },
       { id: 'quotations', label: 'Quotations & Proposals' },
       { id: 'contracts', label: 'Contracts Management' },
-      { id: 'invoicing', label: 'Invoicing & Billing' }
+      { id: 'invoicing', label: 'Invoicing & Billing' },
+      { id: 'promotion_allocation', label: 'Promotion Allocation' }
     ]
   },
   {
@@ -205,7 +209,8 @@ const SYSTEM_MODULES = [
       { id: 'user_permission', label: 'User Permission' },
       { id: 'system_config', label: 'System Config' },
       { id: 'company_regulations', label: 'Company Regulations' },
-      { id: 'google_sheets_sync', label: 'Google Sheets Sync' }
+      { id: 'google_sheets_sync', label: 'Google Sheets Sync' },
+      { id: 'auto_sync', label: 'Background Auto-Sync' }
     ]
   }
 ];
@@ -484,21 +489,6 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    (window as any).toggleConfidentialWatermark = (force?: boolean) => {
-        const hasWatermark = document.body.classList.contains('has-print-watermark');
-        const shouldAdd = force !== undefined ? force : !hasWatermark;
-        
-        if (shouldAdd) {
-            document.body.classList.add('has-print-watermark');
-            document.body.setAttribute('data-print-watermark', 'CONFIDENTIAL');
-        } else {
-            document.body.classList.remove('has-print-watermark');
-            document.body.removeAttribute('data-print-watermark');
-        }
-    };
-  }, []);
-
   const toggleMenu = (menuKey: string) => {
     setExpandedMenus(prev => ({...prev, [menuKey]: !prev[menuKey]}));
     if(!sidebarOpen) setSidebarOpen(true);
@@ -626,23 +616,18 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-3">
                     <button 
-                        onClick={() => window.print()}
-                        className="hidden md:flex items-center justify-center bg-white border-2 border-[#091d38] text-[#091d38] rounded-full shadow-sm px-4 h-11 hover:bg-[#091d38] hover:text-white transition-colors gap-2 group"
-                        title="Print Preview"
-                    >
-                        <Eye size={16} className="text-[#af7a2b] group-hover:text-[#f47729]" />
-                        <span className="text-[11px] font-black uppercase tracking-widest hidden lg:inline">Print Preview</span>
-                    </button>
-                    <button 
-                        onClick={() => (window as any).toggleConfidentialWatermark?.()}
-                        className="hidden md:flex items-center justify-center bg-white rounded-full shadow-sm px-4 border border-[#cdd0db]/50 h-11 hover:bg-[#f8f9fa] transition-colors gap-2"
-                        title="Toggle Confidential Watermark"
-                    >
-                        <ShieldCheck size={16} className="text-[#5167a2]" />
-                        <span className="text-[11px] font-black text-[#2e3118] uppercase tracking-widest hidden lg:inline">Watermark</span>
-                    </button>
-                    <button 
-                        onClick={() => setLanguage(language === 'en' ? 'th' : 'en')}
+                        onClick={() => {
+                            const newLang = language === 'en' ? 'th' : 'en';
+                            setLanguage(newLang);
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                title: newLang === 'en' ? 'Language switched to English' : 'เปลี่ยนภาษาเป็นไทยแล้ว',
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+                        }}
                         className="hidden md:flex items-center justify-center bg-white rounded-full shadow-sm px-3 border border-[#cdd0db]/50 h-11 hover:bg-[#f8f9fa] transition-colors"
                         title={language === 'en' ? 'Switch to Thai' : 'Switch to English'}
                     >
@@ -737,6 +722,10 @@ export default function Home() {
                 <div className="w-full flex-1 flex flex-col">
                 <GoogleSheetsSync />
                 </div>
+            ) : activeTab === 'auto_sync' ? (
+                <div className="w-full flex-1 flex flex-col">
+                <BackgroundAutoSync />
+                </div>
             ) : activeTab === 'quotations' ? (
                 <div className="w-full flex-1 flex flex-col">
                 <Quotations />
@@ -744,6 +733,10 @@ export default function Home() {
             ) : activeTab === 'contracts' ? (
                 <div className="w-full flex-1 flex flex-col">
                 <ContractsManagement />
+                </div>
+            ) : activeTab === 'promotion_allocation' ? (
+                <div className="w-full flex-1 flex flex-col">
+                <PromotionAllocation />
                 </div>
             ) : activeTab === 'performa_invoice' || activeTab === 'proforma_invoice' ? (
                 <div className="w-full flex-1 flex flex-col">

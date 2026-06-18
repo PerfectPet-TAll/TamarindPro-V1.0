@@ -484,7 +484,7 @@ export default function DepositsDownPayment() {
               return (
                 <div id={`receipt-${selectedReceiptId}`} className="bg-white p-8 border border-[#adb2b0]/30 shadow-sm mx-auto max-w-lg">
                   <div className="text-center border-b border-[#111f42] pb-6 mb-6">
-                    <h1 className="text-2xl font-black text-[#f47729] mb-2 uppercase">WMS MASTER</h1>
+                    <h1 className="text-2xl font-black text-[#f47729] mb-2 uppercase">TAMARIND PRO</h1>
                     <h2 className="text-lg font-black text-[#091d38] uppercase tracking-widest">Official Receipt</h2>
                     <p className="text-[12px] text-[#8c7361] mt-2">Ref: {selectedReceiptId}</p>
                   </div>

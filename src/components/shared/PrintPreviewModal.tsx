@@ -13,6 +13,15 @@ interface Props {
 export function PrintPreviewModal({ isOpen, onClose, title, onPrint, children }: Props) {
     const [theme, setTheme] = useState<'color' | 'bw'>('color');
     const [version, setVersion] = useState<'original' | 'copy'>('original');
+    const [hasWatermark, setHasWatermark] = useState(false);
+
+    React.useEffect(() => {
+        if (!isOpen) {
+            document.body.classList.remove('has-print-watermark');
+            document.body.removeAttribute('data-print-watermark');
+            setHasWatermark(false);
+        }
+    }, [isOpen]);
 
     if (!isOpen) return null;
 
@@ -67,6 +76,28 @@ export function PrintPreviewModal({ isOpen, onClose, title, onPrint, children }:
                                         {version === 'copy' && <CheckCircle2 size={16} className="text-[#091d38]"/>}
                                     </button>
                                 </div>
+                            </label>
+                            <label className="block mt-6">
+                                <span className="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Security Overlay</span>
+                                <label className="flex items-center gap-3 p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
+                                    <input 
+                                        type="checkbox" 
+                                        className="w-4 h-4 rounded text-[#091d38] focus:ring-[#091d38]"
+                                        checked={hasWatermark}
+                                        onChange={(e) => {
+                                            const isChecked = e.target.checked;
+                                            setHasWatermark(isChecked);
+                                            if (isChecked) {
+                                                document.body.classList.add('has-print-watermark');
+                                                document.body.setAttribute('data-print-watermark', 'CONFIDENTIAL');
+                                            } else {
+                                                document.body.classList.remove('has-print-watermark');
+                                                document.body.removeAttribute('data-print-watermark');
+                                            }
+                                        }}
+                                    />
+                                    <span className="text-[12px] font-bold text-slate-700">CONFIDENTIAL WATERMARK</span>
+                                </label>
                             </label>
                             
                         </div>

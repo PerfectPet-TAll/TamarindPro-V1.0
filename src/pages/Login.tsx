@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../services/api';
-import { Lock, User as UserIcon, Loader2, Package, Warehouse, ArrowRight, Phone, Mail, Eye, EyeOff } from 'lucide-react';
+import { Lock, User as UserIcon, Loader2, Package, Bean, ArrowRight, Phone, Mail, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'motion/react';
+import { TamarindLogo } from '../components/shared/TamarindLogo';
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -24,7 +25,7 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      const response = await api.post('login', undefined, { username, password });
+      const response = await api.post('login', undefined, { employeeId: username, idCard: password });
       
       if (response.status === 'success' && response.data) {
         login(response.data);
@@ -45,7 +46,7 @@ export default function Login() {
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: `url('https://i.etsystatic.com/40771527/r/il/7f8988/5706371669/il_fullxfull.5706371669_2ivr.jpg')`
+          backgroundImage: `url('https://img.freepik.com/free-photo/fresh-sweet-ripe-tamarind-dark-surface_1150-41879.jpg')`
         }}
       />
 
@@ -56,16 +57,14 @@ export default function Login() {
           <div className="flex flex-col">
             {/* Top Logo */}
             <div className="flex items-center gap-4 text-white mb-16">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#E3624A] to-slate-800 text-white shadow-lg border border-white/10">
-                <Warehouse size={24} strokeWidth={2.5} />
-              </div>
+              <TamarindLogo className="h-12 w-12 p-1.5" />
               <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 text-xl font-black tracking-widest cursor-pointer hover:opacity-80 transition-opacity">
-                  <span className="text-white">WMS</span>
-                  <span className="text-[#E3624A] underline decoration-2 underline-offset-4">MASTER</span>
+                <div className="flex items-center gap-1.5 text-[15px] font-black tracking-wider cursor-pointer hover:opacity-80 transition-opacity">
+                  <span className="text-white uppercase drop-shadow-md">INTELLIGENCE</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f47729] to-[#ab8a3b] uppercase">SALE & EXPORT</span>
                 </div>
-                <span className="text-[9px] font-black text-slate-500 tracking-[0.2em] uppercase mt-1">
-                  Warehouse Core
+                <span className="text-[9px] font-black text-[#8c7361] tracking-[0.1em] uppercase mt-1">
+                  Smart Sales & Export Management System
                 </span>
               </div>
             </div>
@@ -77,7 +76,7 @@ export default function Login() {
               transition={{ duration: 0.6 }}
             >
               <h1 className="text-[75px] font-black tracking-widest text-white leading-none mb-4 shadow-black/20 drop-shadow-xl">
-                TAMARIND PRO
+                TAMARIND PRO V1.0
               </h1>
               <h2 className="text-[26px] font-bold text-white mb-8 tracking-wide drop-shadow-md">
                 Sales & Export Management System
@@ -142,11 +141,11 @@ export default function Login() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="w-full max-w-[460px] rounded-[24px] bg-white/50 backdrop-blur-xl border-2 border-white/60 p-8 sm:p-12 shadow-[0_30px_60px_rgba(0,0,0,0.15)]"
+            className="w-full max-w-[420px] rounded-[24px] bg-white/50 backdrop-blur-xl border-2 border-white/60 p-6 sm:p-8 shadow-[0_30px_60px_rgba(0,0,0,0.15)]"
           >
             <div className="mb-10">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#E3624A] to-slate-800 border border-white/10 text-white mb-6 lg:hidden shadow-lg">
-                <Warehouse size={24} strokeWidth={2.5} />
+              <div className="mb-6 lg:hidden">
+                <TamarindLogo className="h-12 w-12 p-1.5" />
               </div>
               <h2 className="text-[32px] font-bold text-[#1a2035] mb-3 tracking-wide">
                 Welcome back
@@ -170,7 +169,7 @@ export default function Login() {
                       type="text"
                       required
                       className="block w-full bg-white/40 border border-white/60 rounded-xl py-3.5 pl-12 pr-4 text-[14px] font-bold text-slate-800 placeholder:text-slate-500/60 focus:bg-white/70 focus:border-white focus:ring-2 focus:ring-white/50 outline-none transition-all shadow-inner"
-                      placeholder="admin"
+                      placeholder="e.g. DEMO"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                     />
@@ -189,7 +188,7 @@ export default function Login() {
                       type={showPassword ? "text" : "password"}
                       required
                       className="block w-full bg-white/40 border border-white/60 rounded-xl py-3.5 pl-12 pr-12 text-[14px] font-bold text-slate-800 placeholder:text-slate-500/60 focus:bg-white/70 focus:border-white focus:ring-2 focus:ring-white/50 outline-none transition-all shadow-inner"
-                      placeholder="******"
+                      placeholder="e.g. DEMO123456789"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />
@@ -228,11 +227,6 @@ export default function Login() {
                   </>
                 )}
               </button>
-              
-              <div className="mt-8 rounded-xl bg-white/60 p-5 text-center shadow-inner border border-white/60 backdrop-blur-sm">
-                <div className="font-bold text-[#1a2035] text-[13px] mb-1.5">Demo Credentials</div>
-                <div className="text-[13px] font-semibold text-slate-700">User: admin / Pass: 123456</div>
-              </div>
             </form>
           </motion.div>
         </div>
